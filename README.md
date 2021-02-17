@@ -1,3 +1,1 @@
-# PHP Lessons
-
-Lessons
+# PHP Notes
