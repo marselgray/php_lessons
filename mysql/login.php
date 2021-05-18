@@ -1,10 +1,23 @@
 <?php
 
     if ( isset( $_POST['submit'] ) ) {
-        
+
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        $connnection = mysqli_connect( 'localhost', 'root', 'root', 'loginapp' );
+
+        if ( $connnection ) {
+            echo 'we are connected';
+        } else {
+            die( 'no' );
+        }
+
+        // if ( $username && $password ) {
+
+        // } else {
+
+        // }
     }
 
 ?>
