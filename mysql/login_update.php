@@ -4,22 +4,8 @@
     include "functions.php";
 
     if ( isset( $_POST['submit'] ) ) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $id       = $_POST['id'];
-
-        $query  = "UPDATE users SET ";
-        $query .= "username = '$username', ";
-        $query .= "password = '$password' ";
-        $query .= "WHERE id = $id ";
-
-        $result = mysqli_query( $connnection, $query );
-
-        if( ! $result ) {
-            die( 'query failed' . mysqli_error( $connnection ) );
-        }
+        updateTable();
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -32,10 +18,8 @@
     <title>Document</title>
 </head>
 <body>
-
     <div class="container">
         <div class="col-sm-6">
-            
             <form action="login_update.php" method='post'>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -55,10 +39,7 @@
 
                 <input type="submit" name='submit' value='UPDATE' class='btn btn-primary'>
             </form>
-
         </div>
-
     </div>
-    
 </body>
 </html>
