@@ -1,30 +1,12 @@
 <?php
 
     include "db.php";
+    include "functions.php";
 
     if ( isset( $_POST['submit'] ) ) {
-
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        // if ( $connnection ) {
-        //     echo 'we are connected';
-        // } else {
-        //     die( 'no' );
-        // }
-
-        $query = "INSERT INTO users(username,password) ";
-        $query .= "VALUES ('$username', '$password')";
-
-        $result = mysqli_query( $connnection, $query );
-
-        if( !$result ){
-            die('query failed');
-        } 
+        deleteRows();
     }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +18,9 @@
     <title>Document</title>
 </head>
 <body>
-
     <div class="container">
         <div class="col-sm-6">
-            <form action="login_create.php" method='post'>
+            <form action="login_delete.php" method='post'>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name='username' class="form-control">
@@ -50,11 +31,15 @@
                     <input type="password" name='password' class="form-control">
                 </div>
 
-                <input type="submit" name='submit' value='Submit' class='btn btn-primary'>
+                <div class="form-group">
+                    <select name="id" id="">
+                        <?php showAllData(); ?>
+                    </select>
+                </div>
+
+                <input type="submit" name='submit' value='DELETE' class='btn btn-primary'>
             </form>
         </div>
-
     </div>
-    
 </body>
 </html>

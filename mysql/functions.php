@@ -42,3 +42,22 @@ function updateTable() {
 
 }
 
+
+
+function deleteRows() {
+
+    global $connnection;
+    
+    $id       = $_POST['id'];
+
+    $query  = "DELETE FROM users ";
+    $query .= "WHERE id = $id ";
+
+    $result = mysqli_query( $connnection, $query );
+
+    if( ! $result ) {
+        die( 'query failed' . mysqli_error( $connnection ) );
+    }
+
+}
+
