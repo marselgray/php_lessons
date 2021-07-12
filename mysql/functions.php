@@ -3,6 +3,28 @@
 include "db.php";
 
 
+function createRows() {
+    if ( isset( $_POST['submit'] ) ) {
+         
+        global $connnection;
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        $query = "INSERT INTO users(username,password) ";
+        $query .= "VALUES ('$username', '$password')";
+
+        $result = mysqli_query( $connnection, $query );
+
+        if( !$result ){
+            die('query failed');
+        } else {
+            echo 'record created';
+        }
+    }
+}
+
+
 function showAllData() {
     global $connnection;
 
@@ -23,41 +45,47 @@ function showAllData() {
 
 function updateTable() {
 
-    global $connnection;
+    if ( isset( $_POST['submit'] ) ) {
+        global $connnection;
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $id       = $_POST['id'];
-
-    $query  = "UPDATE users SET ";
-    $query .= "username = '$username', ";
-    $query .= "password = '$password' ";
-    $query .= "WHERE id = $id ";
-
-    $result = mysqli_query( $connnection, $query );
-
-    if( ! $result ) {
-        die( 'query failed' . mysqli_error( $connnection ) );
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $id       = $_POST['id'];
+    
+        $query  = "UPDATE users SET ";
+        $query .= "username = '$username', ";
+        $query .= "password = '$password' ";
+        $query .= "WHERE id = $id ";
+    
+        $result = mysqli_query( $connnection, $query );
+    
+        if( ! $result ) {
+            die( 'query failed' . mysqli_error( $connnection ) );
+        } else {
+            echo 'record updated';
+        }
     }
-
 }
 
 
 
 function deleteRows() {
 
-    global $connnection;
+    if ( isset( $_POST['submit'] ) ) {
+        global $connnection;
     
-    $id       = $_POST['id'];
-
-    $query  = "DELETE FROM users ";
-    $query .= "WHERE id = $id ";
-
-    $result = mysqli_query( $connnection, $query );
-
-    if( ! $result ) {
-        die( 'query failed' . mysqli_error( $connnection ) );
+        $id       = $_POST['id'];
+    
+        $query  = "DELETE FROM users ";
+        $query .= "WHERE id = $id ";
+    
+        $result = mysqli_query( $connnection, $query );
+    
+        if( ! $result ) {
+            die( 'query failed' . mysqli_error( $connnection ) );
+        } else {
+            echo 'record deleted';
+        }
     }
-
 }
 
