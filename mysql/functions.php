@@ -1,5 +1,4 @@
 <?php
-
 include "db.php";
 
 
@@ -21,6 +20,24 @@ function createRows() {
         } else {
             echo 'record created';
         }
+    }
+}
+
+
+function readRows() {
+    global $connnection;
+    
+    $connnection = mysqli_connect( 'localhost', 'root', 'root', 'loginapp' );
+
+    $query = "SELECT * FROM users";
+
+    $result = mysqli_query( $connnection, $query );
+
+    if( !$result ){
+        die('query failed');
+    }
+    while ( $row = mysqli_fetch_assoc( $result ) ) {
+        print_r( $row );
     }
 }
 
@@ -66,7 +83,6 @@ function updateTable() {
         }
     }
 }
-
 
 
 function deleteRows() {
