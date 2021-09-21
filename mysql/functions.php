@@ -8,7 +8,10 @@ function createRows() {
         global $connnection;
 
         $username = $_POST['username'];
+        $username = mysqli_real_escape_string($connnection, $username);
+
         $password = $_POST['password'];
+        $password = mysqli_real_escape_string($connnection, $password);
 
         $query = "INSERT INTO users(username,password) ";
         $query .= "VALUES ('$username', '$password')";
@@ -26,7 +29,7 @@ function createRows() {
 
 function readRows() {
     global $connnection;
-    
+
     $connnection = mysqli_connect( 'localhost', 'root', 'root', 'loginapp' );
 
     $query = "SELECT * FROM users";
